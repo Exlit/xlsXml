@@ -136,7 +136,7 @@ public class WriteToExcelForCheck {
                         .setCellValue(qvvItem.getKeywordDe());
                // System.out.println(qvvItem.toString());
         }
-        FileOutputStream outputStream = new FileOutputStream("/Users/keycreative/Desktop/JavaBooks.xlsx");
+        FileOutputStream outputStream = new FileOutputStream("JavaBooks.xlsx");
         workbook.write(outputStream);
         outputStream.close();
         workbook.close();
