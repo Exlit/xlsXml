@@ -2,21 +2,46 @@ package readWrite;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.util.*;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class WriteToXml {
     FileWriter xml;
-    FieldPreparator field = new FieldPreparator();
     LinkedHashMap transcriptDivided;
     FieldCorrector fieldCorrector = new FieldCorrector();
 
+    public static int yesNo(String yn) {
+        if (yn.equalsIgnoreCase("Yes")) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    public static LinkedHashMap interviewTimeCodeAndTextDivide(String interviewFraze) {
+        LinkedHashMap<String, String> transcriptMap = new LinkedHashMap<String, String>();
+        String[] transcriptWithTime = interviewFraze.split("#");
+        for (String transcript : transcriptWithTime) {
+            String[] transcripts = transcript.split("@");
+            if (transcripts[1] == null) {
+                transcriptMap.put(transcripts[0], "null");
+            } else {
+                transcriptMap.put(transcripts[0], transcripts[1]);
+            }
+
+        }
+        return transcriptMap;
+    }
 
     public void createXmlFile(List<QvvItem> itemsList, String pathOut) throws IOException {
         for (QvvItem qvvItem : itemsList) {
             WriteToExcelForCheck.qvvItems.add(qvvItem);
             xml = new FileWriter(pathOut + qvvItem.getKey() + ".xml");
-            xml.write(field.header);
+            xml.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+                    "<Titles>\n" +
+                    "    <Title>\n");
             xml.write("        <key1>" + qvvItem.getKey() + "</key1>\n");
             xml.write("        <itemCode>" + qvvItem.getKey() + "</itemCode>\n");
             xml.write("        <title>" + qvvItem.getTitle() + "</title>\n");
@@ -137,35 +162,12 @@ public class WriteToXml {
                     }
                 }
             }
-            }
+        }
         xml.write("        </Locators>\n");
         xml.write("    </Title>\n");
         xml.write("</Titles>");
         // System.out.println(qvvItem.toString());
         xml.flush();
         xml.close();
-        }
-
-    public static int yesNo(String yn) {
-        if (yn.equalsIgnoreCase("Yes")) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-
-    public static LinkedHashMap interviewTimeCodeAndTextDivide(String interviewFraze) {
-        LinkedHashMap<String, String> transcriptMap = new LinkedHashMap<String, String>();
-        String[] transcriptWithTime = interviewFraze.split("#");
-        for (String transcript : transcriptWithTime) {
-            String[] transcripts = transcript.split("@");
-            if (transcripts[1] == null) {
-                transcriptMap.put(transcripts[0], "null");
-            } else {
-                transcriptMap.put(transcripts[0], transcripts[1]);
-            }
-
-        }
-        return transcriptMap;
     }
 }
