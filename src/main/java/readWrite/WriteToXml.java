@@ -80,11 +80,11 @@ public class WriteToXml {
                 xml.write("        <QVV_Keywords>\n");
                 String[] keywordListEng = qvvItem.getKeywordEng().split(",");
                 for (int k = 0; k < keywordListEng.length; k++) {
-                    xml.write("            <s>" + keywordListEng[k] + "</s>\n");
+                    xml.write("            <s>" + keywordListEng[k].trim() + "</s>\n");
                 }
                 String[] keywordListDe = qvvItem.getKeywordDe().split(",");
                 for (int k = 0; k < keywordListDe.length; k++) {
-                    xml.write("            <s>" + keywordListDe[k] + "</s>\n");
+                    xml.write("            <s>" + keywordListDe[k].trim() + "</s>\n");
                 }
                 xml.write("        </QVV_Keywords>\n");
             }

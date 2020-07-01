@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 
 public class ReadFromXlsx {
@@ -17,9 +18,7 @@ public class ReadFromXlsx {
         InputStream excelFileToRead = new FileInputStream(pathIn);
         XSSFWorkbook wb = new XSSFWorkbook(excelFileToRead);
         XSSFSheet sheet = wb.getSheetAt(0);
-        ArrayList<String> cellsList = new ArrayList<String>();
-       // WriteToExcelForCheck writeToExcelForCheck = new WriteToExcelForCheck();
-       // ItemListCreator itemListCreator = new ItemListCreator();
+        List<String> cellsList = new ArrayList<String>();
         WriteToXml writeToXml = new WriteToXml();
         Iterator<Row> rowIterator = sheet.iterator();
 
@@ -31,7 +30,7 @@ public class ReadFromXlsx {
                 Cell cell = cellIterator.next();
                 cellsList.add(cell.toString());
             }
-
+            //AVOID NOT NECESSARY RAWS
             if (cellsList.size() > 31 && !cellsList.get(14).equals("") && cellsList.get(14).length() < 22 && cellsList.get(14).length() > 8 && cellsList.get(0).length() == 0) {
                 writeToXml.createXmlFile(new ItemListCreator().createList(cellsList), pathOut);
             }
