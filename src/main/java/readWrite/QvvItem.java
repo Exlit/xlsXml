@@ -1,7 +1,5 @@
 package readWrite;
 
-import java.util.Date;
-
 public class QvvItem {
     private String key;
     private String itemCode;
@@ -76,42 +74,6 @@ public class QvvItem {
         this.keyFrame = keyFrame;
         this.clipTcIn = clipTcIn;
         this.clipTcOut = clipTcOut;
-    }
-
-    public QvvItem(String key, String title, String keyPlayer, String copyright,
-                   String productionTitle, String classification, String description, String interviewId, String color, String productCat, String category, String keywordEng, String keywordDe,
-                   String credits, String productionId, String producer, String cameraType, String location,
-                   String region, String country)
-    {
-        this.key = key;
-        this.title = title;
-        this.keyPlayer = keyPlayer;
-        this.copyright = copyright;
-        this.productionTitle = productionTitle;
-        this.classification = classification;
-        this.description = description;
-        this.interviewId = interviewId;
-        this.color = color;
-        this.productCat = productCat;
-        this.category = category;
-        this.keywordEng = keywordEng;
-        this.keywordDe = keywordDe;
-        this.credits = credits;
-        this.productionId = productionId;
-        this.producer = producer;
-        this.cameraType = cameraType;
-        this.location = location;
-        this.region = region;
-        this.country = country;
-    }
-
-    public QvvItem(String keyFrame, String progTcIn, String progTcOut, String clipTcIn, String clipTcOut, String duration) {
-        this.keyFrame = keyFrame;
-        this.progTcIn = progTcIn;
-        this.progTcOut = progTcOut;
-        this.clipTcIn = clipTcIn;
-        this.clipTcOut = clipTcOut;
-        this.duration = duration;
     }
 
     public String getKey() {
